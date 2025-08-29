@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE buildprofiles SYSTEM "https://resources.jetbrains.com/writerside/1.0/build-profiles.dtd">
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <web-root>https://www.loom-lang.com/documentation</web-root>
+        <header-logo>logo.svg</header-logo>
+
+        <download-title>Download</download-title>
+        <download-page>https://loom-lang.com/download</download-page>
+        <showDownloadButton>true</showDownloadButton>
+
+        <primary-color>metallic</primary-color>
+        <color-preset>soft</color-preset>
+    </variables>
+
+    <footer>
+        <social type="blog" href="https://blog.jetbrains.com/writerside/">Writerside Blog</social>
+        <social type="twitter" href="https://twitter.com/onwriterside">Writerside on Twitter</social>
+
+        <link href="https://youtrack.loom-lang.com/issues/">Issue tracker</link>
+        <link href="https://youtrack.jetbrains.com/form/9cf3cf67-8bc0-4cbc-824c-7ade4c563338">Submit support request
+        </link>
+        <link href="mailto:contacte@loom-lang.com">Contact us</link>
+
+        <copyright>2025 Loom Foundation</copyright>
+    </footer>
+
+    <build-profile instance="hi">
+        <variables>
+            <custom-favicons>logo_dark.svg</custom-favicons>
+            <noindex-content>false</noindex-content>
+        </variables>
+    </build-profile>
+
+</buildprofiles>

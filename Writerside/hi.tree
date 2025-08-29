@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="hi"
+                 name="Documentation"
+                 start-page="Home.md">
+
+    <toc-element topic="Home.md"/>
+    <toc-element toc-title="Getting Started">
+        <toc-element topic="Installation.md"/>
+        <toc-element topic="Hello-World.md"/>
+    </toc-element>
+    <toc-element toc-title="Language">
+        <toc-element toc-title="Types">
+            <toc-element topic="Signed-Integer.md"/>
+            <toc-element topic="Float.md"/>
+            <toc-element topic="Double.md"/>
+            <toc-element topic="Unsigned-Integer.md"/>
+            <toc-element topic="String.md"/>
+            <toc-element topic="Char.md"/>
+            <toc-element topic="Byte.md"/>
+            <toc-element topic="Bit.md"/>
+            <toc-element topic="Boolean.md"/>
+        </toc-element>
+        <toc-element toc-title="OOP">
+            <toc-element toc-title="Classes"/>
+        </toc-element>
+        <toc-element toc-title="Functions"/>
+        <toc-element toc-title="Modules"/>
+        <toc-element toc-title="Enumerators"/>
+        <toc-element toc-title="Structs"/>
+    </toc-element>
+    <toc-element toc-title="Tooling"/>
+    <toc-element toc-title="Recipes"/>
+</instance-profile>
