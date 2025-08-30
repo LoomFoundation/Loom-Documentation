@@ -35,6 +35,9 @@
         <toc-element toc-title="Structs"/>
         <toc-element toc-title="Builtin Functions">
             <toc-element topic="Range.md"/>
+            <toc-element topic="Print.md"/>
+            <toc-element topic="Input.md"/>
+            <toc-element topic="Exit.md"/>
         </toc-element>
     </toc-element>
     <toc-element toc-title="Tooling"/>
