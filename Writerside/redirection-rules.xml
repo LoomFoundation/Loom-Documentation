@@ -10,4 +10,8 @@
         <description>Created after removal of "This is the first topic" from Documentation</description>
         <accepts>Default-topic.html</accepts>
     </rule>
+    <rule id="19cbdd20">
+        <description>Created after removal of "Builtin Functions" from Documentation</description>
+        <accepts>Builtin-Functions.html</accepts>
+    </rule>
 </rules>

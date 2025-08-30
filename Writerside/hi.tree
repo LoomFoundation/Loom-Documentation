@@ -23,6 +23,9 @@
             <toc-element topic="Bit.md"/>
             <toc-element topic="Boolean.md"/>
         </toc-element>
+        <toc-element toc-title="Control Flow">
+            <toc-element topic="Loops.md"/>
+        </toc-element>
         <toc-element toc-title="OOP">
             <toc-element toc-title="Classes"/>
         </toc-element>
@@ -30,6 +33,9 @@
         <toc-element toc-title="Modules"/>
         <toc-element toc-title="Enumerators"/>
         <toc-element toc-title="Structs"/>
+        <toc-element toc-title="Builtin Functions">
+            <toc-element topic="Range.md"/>
+        </toc-element>
     </toc-element>
     <toc-element toc-title="Tooling"/>
     <toc-element toc-title="Recipes"/>
