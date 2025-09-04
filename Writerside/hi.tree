@@ -25,15 +25,22 @@
             <toc-element topic="Array-Literals.md"/>
         </toc-element>
         <toc-element toc-title="Control Flow">
+            <toc-element topic="If-Statements.md"/>
+            <toc-element topic="Ternary-Operands.md"/>
             <toc-element topic="Loops.md"/>
         </toc-element>
         <toc-element toc-title="OOP">
-            <toc-element toc-title="Classes"/>
+            <toc-element toc-title="Classes">
+                <toc-element topic="Objects.md"/>
+                <toc-element topic="Object-Instantiation.md"/>
+                <toc-element topic="Object-Inheritance.md"/>
+                <toc-element topic="Template-Classes.md"/>
+            </toc-element>
+            <toc-element toc-title="Structs"/>
+            <toc-element toc-title="Enumerators"/>
         </toc-element>
         <toc-element toc-title="Functions"/>
         <toc-element toc-title="Modules"/>
-        <toc-element toc-title="Enumerators"/>
-        <toc-element toc-title="Structs"/>
         <toc-element toc-title="Builtin Functions">
             <toc-element topic="Range.md"/>
             <toc-element topic="Print.md"/>

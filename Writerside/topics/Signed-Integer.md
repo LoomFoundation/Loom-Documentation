@@ -7,13 +7,13 @@ This page documents Loom’s **signed, fixed-width, two’s-complement** integer
 ## Quick reference
 
 |  Type | Bits | Range (inclusive)                                      | Alignment\* | Default? |
-| ----: | ---: | ------------------------------------------------------ | ----------- | -------- |
+|------:|-----:|--------------------------------------------------------|-------------|----------|
 |  `i8` |    8 | −128 … 127                                             | 1           | No       |
 | `i16` |   16 | −32,768 … 32,767                                       | 2           | No       |
 | `i32` |   32 | −2,147,483,648 … 2,147,483,647                         | 4           | **Yes**  |
 | `i64` |   64 | −9,223,372,036,854,775,808 … 9,223,372,036,854,775,807 | 8           | No       |
 
-\* Alignment is target-dependent but listed here by typical ABI convention.
+> Alignment is target-dependent but listed here by typical ABI convention.
 
 * **Representation:** Two’s complement.
 * **Endianness:** Platform-dependent; use std helpers for explicit byte order.
@@ -42,7 +42,7 @@ let wide  = 9000i16
 let big   = 0xFF_FF_FF_FFi64
 ```
 
-If no suffix is provided and no contextual type is required, **`i32`** is inferred.
+If no suffix is provided and no contextual type is required, **`i32`** is inferred, unless the literal is too large to fit in **`i32`**.
 
 ---
 
@@ -50,8 +50,8 @@ If no suffix is provided and no contextual type is required, **`i32`** is inferr
 
 ```loom
 let count: i64 = 10
-let delta       = -3         # inferred i32
-var total: i32  = 0          # mutable variable (use `var`), signed 32-bit
+let delta      = -3         # inferred i32
+var total: i32 = 0          # mutable variable (use `var`), signed 32-bit
 ```
 
 ---
@@ -73,8 +73,7 @@ let m = x << 2      # 1200
 let n = ~y          # bitwise NOT
 ```
 
-> **Note:** Division by zero is a runtime error.
-
+> **Note:** Division by zero returns a _NaN_.
 ---
 
 ## Overflow behavior
@@ -86,13 +85,13 @@ Loom provides **checked** behavior in Debug and **wrapping** behavior in Release
 * `saturating_add/sub/mul` → clamps at `MIN`/`MAX`
 
 ```loom
-let (v, of) = 32_000i16.checked_add(10_000i16)
+let (v, of) = 32_000i16.checkedAdd(10_000i16)
 if of {
     println("overflow detected")
 }
 
-let wrap = 127i8.wrapping_add(1i8)    # -128
-let sat  = (-120i8).saturating_sub(20i8) # -128
+let wrap = 127i8.wrappingAdd(1i8)    # -128
+let sat  = (-120i8).saturatingSub(20i8) # -128
 ```
 
 ---
@@ -116,11 +115,6 @@ let c: i64 = a as i64     # always lossless here
 let f: f32 = (123i32) as f32
 let i: i32 = (3.9f32) as i32   # 3
 ```
-
-Safe helpers:
-
-* `to_i8/i16/i32/i64_checked(f)` → `(value, overflowed: bool)`
-* `to_i*_saturating(f)` → clamps to bounds
 
 ---
 
@@ -159,14 +153,14 @@ println(i64::BYTES)# 8
 
 Bit-twiddling intrinsics:
 
-* `count_ones()`, `count_zeros()`
-* `leading_zeros()`, `trailing_zeros()`
-* `rotate_left(k)`, `rotate_right(k)`
-* `abs()` (note: `abs(i64::MIN)` overflows; see `abs_checked()`)
+* `countOnes()`, `countZeros()`
+* `leadingZeros()`, `trailingZeros()`
+* `rotateLeft(k)`, `rotateRight(k)`
+* `abs()` (note: `abs(i64::MIN)` overflows; see `absChecked()`)
 
 ```loom
 let mask = 0xFF00i32
-println(mask.count_ones())  # 8
+println(mask.countOnes())  # 8
 ```
 
 ---
@@ -187,8 +181,8 @@ Parsing helpers (throw on error unless using `*_opt` variants):
 
 ```loom
 let n: i32 = i32.parse("12345")
-let m: i32 = i32.parse_radix("DEAD", 16)
-let o_opt = i32.parse_opt("not_a_number")   # -> Option<i32>
+let m: i32 = i32.parseRadix("DEAD", 16)
+let o_opt = i32.parseOpt("not_a_number")   # -> Option<i32>
 ```
 
 ---
@@ -196,11 +190,11 @@ let o_opt = i32.parse_opt("not_a_number")   # -> Option<i32>
 ## Interop & memory
 
 * **ABI:** Two’s-complement, fixed width. Use `sizeof(i32) == 4`, `alignof(i64) == 8`.
-* **Byte order:** Use `to_le_bytes() / to_be_bytes()` and the inverse `from_le_bytes()`/`from_be_bytes()`.
+* **Byte order:** Use `toBytes()` and the inverse `fromBytes()`.
 
 ```loom
-let bytes: [u8; 4] = 0x12345678i32.to_be_bytes()
-let val: i32 = i32.from_be_bytes(bytes)
+let bytes: []byte = 0x12345678i32.toBytes()
+let val: i32 = i32.fromBytes(bytes)
 ```
 
 ---
@@ -249,7 +243,7 @@ if (perms & EXEC) != 0 {
 ```loom
 # Add user input to a budget without ever exceeding i32::MAX
 var budget: i32 = 2_000_000_000
-budget = budget.saturating_add(user_delta)
+budget = budget.saturatingAdd(user_delta)
 ```
 
 ---
@@ -263,7 +257,7 @@ A: It’s the de-facto hardware representation; shifts and wraps are well-define
 A: Yes—mixed signed int expressions promote to the widest signed type present.
 
 **Q: How do I avoid wrap in Release?**
-A: Use `checked_*` (detect), `saturating_*` (clamp), or compile with overflow checks enabled for your target profile.
+A: Use `checked*` (detect), `saturating*` (clamp), or compile with overflow checks enabled for your target profile.
 
 ---
 
